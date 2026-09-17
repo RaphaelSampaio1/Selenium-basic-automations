@@ -35,5 +35,9 @@ if __name__ == "__main__":
 
     bot.challenge4(file_path=FILE_PATH)
 
+    bot.webscraping()
+
+    
+
 
     input("xx")
