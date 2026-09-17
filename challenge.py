@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 import pandas as pd
+import os
 
 class challengeSite:
     def __init__(self):
@@ -129,5 +130,38 @@ class challengeSite:
         ok_btn.click()
 
 
-                        
-            
+    # Challenge 5 -> Webscraping
+    def webscraping(self):
+        website_url= "https://sampaiodev-rpa-desafios.vercel.app/loja.html"
+        self.initialize_driver(site= website_url)
+
+        # Wait page loads
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "//h1[contains(normalize-space(), 'Sampaio Store')]")))
+
+        itens= self.driver.find_elements(By.CLASS_NAME, "product-card")
+        products = []
+
+        for i in itens:
+            prod_name = i.find_element(By.CLASS_NAME, "title").text
+            prod_description = i.find_element(By.CLASS_NAME, "desc").text
+            prod_price= i.find_element(By.CLASS_NAME, "price").text
+
+            # Format values
+            prod_price = prod_price.replace("R$ ", "").replace(",",".")
+
+
+            products.append({
+                'Product': prod_name,
+                'Description': prod_description,
+                'Price': prod_price
+            })
+
+
+
+        # Create TXT file
+        with open(r"data/products_catalog.txt", "w") as file: # "w" to create the file if it not exist
+            file.write(str(products))
+
+
+
+    
