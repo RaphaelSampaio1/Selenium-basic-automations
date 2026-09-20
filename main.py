@@ -21,7 +21,7 @@ if not EMAIL or not PASSW:
 bot = challengeSite()
 SITE = "https://sampaiodev-rpa-desafios.vercel.app/"
 CSV_PATH=r"data\database.csv"
-FILE_PATH= r"C:\Users\WIN11\Downloads\_delete_later\tes\data\teste.txt"
+FILE_PATH= r"data\teste.txt"
 
 
 if __name__ == "__main__":
