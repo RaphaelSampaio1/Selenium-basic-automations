@@ -16,6 +16,10 @@ class challengeSite:
         self.options = Options()
         self.arguments= ["window-size=1200,1080"]
 
+        self.options.add_argument("--headless") 
+        self.options.add_argument("--no-sandbox")
+        self.options.add_argument("--disable-dev-shm-usage")
+
         for i in self.arguments:
             self.options.add_argument(i)
 
